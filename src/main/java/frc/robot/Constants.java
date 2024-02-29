@@ -7,8 +7,8 @@ public class Constants {
 
     public static class IDs {
         public static final int leftLeader = 1;
-        public static final int rightLeader = 2;
-        public static final int leftFollower = 3;
+        public static final int leftFollower = 2;
+        public static final int rightLeader = 3;
         public static final int rightFollower = 4;
         public static final int launcher = 10;
         public static final int feeder = 11;

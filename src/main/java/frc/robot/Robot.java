@@ -16,22 +16,23 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopPeriodic() {
-    RobotContainer.m_drive.driveCurve(
-        MathUtil.applyDeadband(m_driverController.getLeftY(), 0.1),
+    RobotContainer.drive.driveCurve(
+        MathUtil.applyDeadband(-m_driverController.getLeftY(), 0.1),
         MathUtil.applyDeadband(m_driverController.getRightX(), 0.1),
-        m_driverController.getAButton());
+        m_driverController.getRightBumper());
 
+    // if (m_driverController.getrighttrigger()) {
+    // if (m_driverController.getLeftTrigger()) {
+    // RobotContainer.m_launcher.setLaunchPercent(Constants.intakeSpeedLauncher);
+    // RobotContainer.m_launcher.setFeedPercent(Constants.intakeSpeedFeeder);
+    // }
+    // } else {
     // if (m_driverController.getLeftTrigger()) {
     // RobotContainer.m_launcher.setLaunchPercent(Constants.launchSpeedLauncher);
     // }
-    // if (m_driverController.getRightBumper()) {
-    // RobotContainer.m_launcher.setFeedPercent(Constants.intakeSpeedFeeder);
-    // }
     // if (m_driverController.getLeftBumper()) {
-    // RobotContainer.m_launcher.setFeedPercent(Constants.intakeSpeedLauncher);
+    // RobotContainer.m_launcher.setFeedPercent(Constants.launchSpeedFeeder);
     // }
-    // if (m_driverController.getRightTrigger()) {
-    // RobotContainer.m_launcher.setLaunchPercent(Constants.launchSpeedFeeder);
     // }
   }
 }

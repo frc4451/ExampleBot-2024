@@ -9,7 +9,7 @@ public class DriveSubsystem {
     private final Spark rightLeader;
     private final Spark leftFollower;
     private final Spark rightFollower;
-    private final DifferentialDrive m_robotDrive;
+    private final DifferentialDrive drive;
 
     /**
      * 
@@ -18,13 +18,13 @@ public class DriveSubsystem {
      * @param leftFollowerID
      * @param rightFollowerID
      */
-    public DriveSubsystem(int leftLeaderID, int rightLeaderID, int leftFollowerID, int rightFollowerID) {
+    public DriveSubsystem(int leftLeaderID, int leftFollowerID, int rightLeaderID, int rightFollowerID) {
         leftLeader = new Spark(leftLeaderID);
-        rightLeader = new Spark(rightLeaderID);
         leftFollower = new Spark(leftFollowerID);
+        rightLeader = new Spark(rightLeaderID);
         rightFollower = new Spark(rightFollowerID);
-
-        m_robotDrive = new DifferentialDrive(leftLeader::set, rightLeader::set);
+        // drive = new DifferentialDrive(leftLeader::set, rightLeader::set);
+        drive = new DifferentialDrive(leftLeader::set, rightLeader::set);
 
         leftLeader.setExpiration(250);
         rightLeader.setExpiration(250);
@@ -32,7 +32,9 @@ public class DriveSubsystem {
         rightFollower.setExpiration(250);
 
         leftLeader.setInverted(false);
+        leftFollower.setInverted(false);
         rightLeader.setInverted(true);
+        rightFollower.setInverted(true);
         leftLeader.addFollower(leftFollower);
         rightLeader.addFollower(rightFollower);
     }
@@ -59,10 +61,10 @@ public class DriveSubsystem {
     // }
 
     public void driveCurve(double speed, double rotation, boolean allowTurnInPlace) {
-        m_robotDrive.curvatureDrive(speed, rotation, allowTurnInPlace);
+        drive.curvatureDrive(speed, rotation, allowTurnInPlace);
     }
 
     public void driveArcade(double speed, double rotation) {
-        m_robotDrive.arcadeDrive(speed, rotation);
+        drive.arcadeDrive(speed, rotation);
     }
 }
