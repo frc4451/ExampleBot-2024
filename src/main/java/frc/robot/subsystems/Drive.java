@@ -1,14 +1,14 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
-import edu.wpi.first.wpilibj.motorcontrol.Spark;
+import edu.wpi.first.wpilibj.motorcontrol.PWMSparkMax;
 
 /** Add your docs here. */
-public class DriveSubsystem {
-    private final Spark leftLeader;
-    private final Spark rightLeader;
-    private final Spark leftFollower;
-    private final Spark rightFollower;
+public class Drive {
+    private final PWMSparkMax leftLeader;
+    private final PWMSparkMax rightLeader;
+    private final PWMSparkMax leftFollower;
+    private final PWMSparkMax rightFollower;
     private final DifferentialDrive drive;
 
     /**
@@ -18,11 +18,11 @@ public class DriveSubsystem {
      * @param leftFollowerID
      * @param rightFollowerID
      */
-    public DriveSubsystem(int leftLeaderID, int leftFollowerID, int rightLeaderID, int rightFollowerID) {
-        leftLeader = new Spark(leftLeaderID);
-        leftFollower = new Spark(leftFollowerID);
-        rightLeader = new Spark(rightLeaderID);
-        rightFollower = new Spark(rightFollowerID);
+    public Drive(int leftLeaderID, int leftFollowerID, int rightLeaderID, int rightFollowerID) {
+        leftLeader = new PWMSparkMax(leftLeaderID);
+        leftFollower = new PWMSparkMax(leftFollowerID);
+        rightLeader = new PWMSparkMax(rightLeaderID);
+        rightFollower = new PWMSparkMax(rightFollowerID);
         // drive = new DifferentialDrive(leftLeader::set, rightLeader::set);
         drive = new DifferentialDrive(leftLeader::set, rightLeader::set);
 
@@ -54,15 +54,16 @@ public class DriveSubsystem {
      * @param leftPercent  The speed value between -1.0 and 1.0 to set.
      * @param rightPercent The speed value between -1.0 and 1.0 to set.
      */
-    // public void setPercent(
-    // double leftPercent, double rightPercent) {
-    // leftLeader.set(leftPercent);
-    // rightLeader.set(rightPercent);
-    // }
+    public void setPercent(
+    double leftPercent, double rightPercent) {
+    leftLeader.set(leftPercent);
+    rightLeader.set(rightPercent);
+    }
 
     public void driveCurve(double speed, double rotation, boolean allowTurnInPlace) {
         drive.curvatureDrive(speed, rotation, allowTurnInPlace);
     }
+
 
     public void driveArcade(double speed, double rotation) {
         drive.arcadeDrive(speed, rotation);

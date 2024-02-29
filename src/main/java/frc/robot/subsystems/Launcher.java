@@ -2,7 +2,7 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.motorcontrol.PWMSparkMax;
 
-public class LauncherSubsystem {
+public class Launcher {
 
     private final PWMSparkMax launchMotor;
     private final PWMSparkMax feedMotor;
@@ -12,7 +12,7 @@ public class LauncherSubsystem {
      * @param launcher
      * @param feeder
      */
-    public LauncherSubsystem(int launcher, int feeder) {
+    public Launcher(int launcher, int feeder) {
         launchMotor = new PWMSparkMax(launcher);
         feedMotor = new PWMSparkMax(feeder);
 
